@@ -1,0 +1,6 @@
+FROM quay.io/fedora/fedora:39
+
+RUN dnf install -y task \
+&& dnf clean all
+
+ENTRYPOINT ["/usr/bin/task"]

@@ -1,0 +1,27 @@
+#!/bin/bash
+
+DEF_NAME=$1
+DEF_DIR=defs/$DEF_NAME
+DEF_FILE=$DEF_DIR/podmansh.bash
+
+if [ -z $DEF_NAME ]; then
+    echo "Def dir not specified."
+    exit 1
+fi
+
+if [ ! -f $DEF_FILE ]; then
+    echo "$DEF_FILE file not found."
+    exit 1
+fi
+
+source $DEF_FILE
+
+echo "Running podmansh::build..."
+(cd $DEF_DIR; podmansh::build)
+unset podmanmsh::build
+
+echo
+
+echo "Running podmansh::install"
+(cd $DEF_DIR; podmansh::install)
+unset podman::install

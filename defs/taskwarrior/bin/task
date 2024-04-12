@@ -1,0 +1,13 @@
+#!/bin/bash
+
+podman run \
+    --rm \
+    --mount type=bind,source=$HOME/.task,destination=/var/home/lrossett/.task,bind-propagation=shared,rw=true \
+    --mount type=bind,source=$HOME/.taskrc,destination=/var/home/lrossett/.taskrc,bind-propagation=shared,rw=true \
+    --env "HOME=$HOME" \
+    --user $(id -u) \
+    --userns keep-id \
+    -it \
+    --group-add keep-groups \
+    "localhost/podmansh-task:latest" \
+    task $@
