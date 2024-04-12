@@ -25,3 +25,7 @@ echo
 echo "Running podmansh::install"
 (cd $DEF_DIR; podmansh::install)
 unset podman::install
+
+echo
+
+echo "\"$DEF_NAME\" installed."
